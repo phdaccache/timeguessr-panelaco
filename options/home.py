@@ -1,6 +1,6 @@
 import streamlit as st
-import options.jogar as jg
-import options.submeter as sb
+from streamlit_folium import st_folium
+import folium
 
 def run_home():
     for i in range(6):
@@ -19,3 +19,8 @@ def run_home():
     elif submeter:
         st.session_state["page_option"] = "submeter"
         st.rerun()
+
+    DEFAULT_LATITUDE = 51.
+    DEFAULT_LONGITUDE = 3.
+    m = folium.Map(location=[DEFAULT_LATITUDE, DEFAULT_LONGITUDE], zoom_start=1)
+    st_folium(m, width=0,height=0)

@@ -1,5 +1,4 @@
 import streamlit as st
-import options.resultado as rt
 from streamlit_folium import st_folium
 import folium
 import random
