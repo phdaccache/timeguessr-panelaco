@@ -1,0 +1,4 @@
+secrets.toml
+firebase-api-key.json
+credentials.json
+**/__pycache__/
