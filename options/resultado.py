@@ -94,7 +94,7 @@ def run_resultado():
             coords_2, popup="Local Escolhido", tooltip=tooltip
         ).add_to(m)
 
-        f_map = st_folium(m, width=400,height=300)
+        f_map = st_folium(m, width=400,height=300,returned_objects=["last_object_clicked"])
 
         dist_score = 5000 * (math.e ** (-10 * (dist.meters)/14916862))
         dist_score = round(dist_score)

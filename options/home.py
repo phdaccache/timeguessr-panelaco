@@ -23,4 +23,4 @@ def run_home():
     DEFAULT_LATITUDE = 51.
     DEFAULT_LONGITUDE = 3.
     m = folium.Map(location=[DEFAULT_LATITUDE, DEFAULT_LONGITUDE], zoom_start=1)
-    st_folium(m, width=0,height=0)
+    st_folium(m, width=0,height=0,returned_objects=["last_object_clicked"])
