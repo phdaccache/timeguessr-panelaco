@@ -3,7 +3,7 @@ geopy==2.4.1
 Pillow==10.4.0
 Pyrebase4==4.8.0
 Requests==2.32.3
-streamlit==1.37.1
+streamlit==1.38.0
 streamlit_folium==0.22.0
 toml==0.10.2
 requests-toolbelt>=0.7.1,<1.0

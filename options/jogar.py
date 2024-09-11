@@ -18,23 +18,24 @@ def get_image():
         image = storage.child(f"images/{fotodia[today]}.jpg").get_url(user["idToken"])
         return image, fotodia[today]
 
+    possible_images = []
     no_images = True
-    for value in status:
+    for pos, value in enumerate(status):
         if not value:
             no_images = False
-            break
+            possible_images.append(pos)
     
     if no_images:
         return None, 0
     
-    while(True):
-        image_num = random.randint(1, total_photos)
-        if status[image_num] == False:
-            fotodia = db.child("Users").child(user["localId"]).child("fotodia").remove()
-            fotodia = db.child("Users").child(user["localId"]).child("fotodia").update({today:image_num})
-            db.child("Users").child(user["localId"]).child("status").child(image_num).set(True)
-            image = storage.child(f"images/{image_num}.jpg").get_url(user["idToken"])
-            return image, image_num
+    random_num = random.randint(0, len(possible_images)-1)
+    image_num = possible_images[random_num]
+    if status[image_num] == False:
+        fotodia = db.child("Users").child(user["localId"]).child("fotodia").remove()
+        fotodia = db.child("Users").child(user["localId"]).child("fotodia").update({today:image_num})
+        db.child("Users").child(user["localId"]).child("status").child(image_num).set(True)
+        image = storage.child(f"images/{image_num}.jpg").get_url(user["idToken"])
+        return image, image_num
 
 def run_jogar():
     st.markdown("<h1 style='text-align: center; color: black; font-weight: bold;font-family: Verdana, sans-serif; font-size:35px;'>Adivinhe o Local &#128205 e a Data &#128198</h1>", unsafe_allow_html=True)

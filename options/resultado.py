@@ -76,7 +76,7 @@ def run_resultado():
     desc = st.session_state["desc"]
     image = st.session_state["image"]
 
-    st.code(f"Foto de {nome}\nDescrição: {desc}")
+    st.code(f"Foto de {nome}\nDescrição: {desc}", wrap_lines=True)
 
     diff = abs(data_certa - data_escolhida)
     dist = geopy.distance.geodesic(coords_1, coords_2)
