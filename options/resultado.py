@@ -140,7 +140,7 @@ def run_resultado():
     file = data.getvalue()
     
     file_name = f"timeguessr-panelaco-{datetime.today().strftime('%Y-%m-%d')}.png"
-    st.download_button("Compartilhar resultado", data=file,file_name=file_name,mime="image/png")
+    st.download_button("Compartilhar Resultado", data=file,file_name=file_name,mime="image/png")
 
     if st.button("Voltar Página Inicial"):
         st.session_state["page_option"] = "home"
