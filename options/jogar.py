@@ -21,9 +21,9 @@ def get_image():
     possible_images = []
     no_images = True
     for pos, value in enumerate(status):
-        if not value:
+        if value == False:
             no_images = False
-            possible_images.append(pos+1)
+            possible_images.append(pos)
     
     if no_images:
         return None, 0
