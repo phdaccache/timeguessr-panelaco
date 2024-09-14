@@ -9,7 +9,6 @@ def get_image():
     db = st.session_state['db']
     storage = st.session_state['storage']
     user = st.session_state['user']
-    total_photos = db.child("Users").child(user["localId"]).child("totalfotos").get().val()
     status = db.child("Users").child(user["localId"]).child("status").get().val()
     fotodia = db.child("Users").child(user["localId"]).child("fotodia").get().val()
 

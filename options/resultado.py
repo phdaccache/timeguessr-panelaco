@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 import requests
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 weird_dic = {
     0: 5000,
@@ -139,7 +140,7 @@ def run_resultado():
     share_image.save(data, format="PNG")
     file = data.getvalue()
     
-    file_name = f"timeguessr-panelaco-{datetime.today().strftime('%Y-%m-%d')}.png"
+    file_name = f"timeguessr-panelaco-{datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')}.png"
     st.download_button("Compartilhar Resultado", data=file,file_name=file_name,mime="image/png")
 
     if st.button("Voltar Página Inicial"):
