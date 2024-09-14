@@ -3,6 +3,7 @@ from streamlit_folium import st_folium
 import folium
 import random
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 def get_image():
     db = st.session_state['db']
@@ -13,7 +14,7 @@ def get_image():
     fotodia = db.child("Users").child(user["localId"]).child("fotodia").get().val()
 
     current_day = list(fotodia)[0]
-    today = datetime.today().strftime('%Y-%m-%d')
+    today = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')
     if current_day == today:
         image = storage.child(f"images/{fotodia[today]}.jpg").get_url(user["idToken"])
         return image, fotodia[today]
