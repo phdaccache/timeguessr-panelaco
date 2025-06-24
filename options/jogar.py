@@ -18,7 +18,7 @@ def get_image():
     today = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')
     if current_day == today:
         # image = get_storage(f"images/{fotodia[today]}.jpg")
-        image = storage.child(f"images/{fotodia[today]}.jpg".download(f"{fotodia[today]}.jpg", token=user["idToken"]))
+        image = storage.child(f"images/{fotodia[today]}.jpg").download(f"{fotodia[today]}.jpg", token=user["idToken"])
         return image, fotodia[today]
 
     possible_images = []
