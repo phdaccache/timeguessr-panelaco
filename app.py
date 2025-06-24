@@ -13,10 +13,10 @@ st.set_page_config(
 
 # Getting authentication and database modules from Firebase
 # Puts auth and db on st.session_state
-connectFirebase()
+user, auth_status = connectFirebase()
 
 # Authenticating User
-user, auth_status = at.runLoginPage()
+# user, auth_status = at.runLoginPage()
 
 # Running page if user is correctly authenticated
 if auth_status == True:
