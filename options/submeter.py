@@ -32,7 +32,7 @@ def run_submeter():
 
             f_map = st_folium(m, width=400,height=300)
 
-            ano = st.slider("Escolha uma data:", min_value=1900, max_value=2024, value=1962)
+            ano = st.slider("Escolha uma data:", min_value=1900, max_value=2025, value=1962)
 
         selected_latitude = None
         selected_longitude = None
