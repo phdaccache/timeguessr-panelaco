@@ -18,7 +18,7 @@ def get_image():
     today = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')
     if current_day == today:
         # image = get_storage(f"images/{fotodia[today]}.jpg")
-        image = storage.download("images", f"{fotodia[today]}.jpg", user["idToken"])
+        image = storage.download("images/", f"{fotodia[today]}.jpg", user["idToken"])
         return image, fotodia[today]
 
     possible_images = []
@@ -37,7 +37,7 @@ def get_image():
     fotodia = db.child("Users").child(user["localId"]).child("fotodia").update({today:image_num})
     db.child("Users").child(user["localId"]).child("status").child(image_num).set(True)
     # image = get_storage(f"images/{image_num}.jpg")
-    image = storage.download("images", f"{image_num}.jpg", user["idToken"])
+    image = storage.download("images/", f"{image_num}.jpg", user["idToken"])
     return image, image_num
 
 def run_jogar():
