@@ -19,6 +19,7 @@ def get_image():
     if current_day == today:
         # image = get_storage(f"images/{fotodia[today]}.jpg")
         image = storage.download("images/", f"{fotodia[today]}.jpg", user["idToken"])
+        st.write(image)
         return image, fotodia[today]
 
     possible_images = []
