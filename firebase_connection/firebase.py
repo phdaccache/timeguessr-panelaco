@@ -13,7 +13,7 @@ def connectFirebase():
     
     auth = firebase.auth()
 
-    user, auth_status = at.runLoginPage()
+    at.runLoginPage()
 
     db = firebase.database()
     storage = firebase.storage()
@@ -24,5 +24,3 @@ def connectFirebase():
         st.session_state['db'] = db
     if 'storage' not in st.session_state:
         st.session_state['storage'] = storage
-
-    return user, auth_status

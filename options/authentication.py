@@ -44,5 +44,3 @@ def runLoginPage():
 
     if st.session_state['rerun']:
         st.rerun()
-
-    return st.session_state['user'], st.session_state['auth_status']
