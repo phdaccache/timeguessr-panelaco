@@ -5,6 +5,28 @@ import random
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+import requests
+from urllib.parse import quote
+from io import BytesIO
+
+def get_storage(path):
+    user = st.session_state['user']
+
+    encoded_path = quote(path, safe='')
+    url = f"https://firebasestorage.googleapis.com/v0/b/timeguessr-panelaco.appspot.com/o/{encoded_path}?alt=media"
+
+    headers = {
+        "Authorization": f"Bearer {user['idToken']}"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        return BytesIO(response.content)
+    else:
+        print(f"Error {response.status_code}: Failed to get {path}")
+        return None
+
 def get_image():
     db = st.session_state['db']
     storage = st.session_state['storage']
@@ -15,7 +37,8 @@ def get_image():
     current_day = list(fotodia)[0]
     today = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')
     if current_day == today:
-        image = storage.child(f"images/{fotodia[today]}.jpg").get_url(user["idToken"])
+        # image = storage.child(f"images/{fotodia[today]}.jpg").get_url(user["idToken"])
+        image = get_storage(f"images/{fotodia[today]}.jpg")
         return image, fotodia[today]
 
     possible_images = []
