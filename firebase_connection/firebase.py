@@ -13,13 +13,14 @@ def connectFirebase():
     
     auth = firebase.auth()
 
+    if 'auth' not in st.session_state:
+        st.session_state['auth'] = auth
+
     at.runLoginPage()
 
     db = firebase.database()
     storage = firebase.storage()
 
-    if 'auth' not in st.session_state:
-        st.session_state['auth'] = auth
     if 'db' not in st.session_state:
         st.session_state['db'] = db
     if 'storage' not in st.session_state:

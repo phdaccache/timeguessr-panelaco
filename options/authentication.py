@@ -3,7 +3,7 @@ import streamlit as st
 
 # Displays Login Page and authenticates User with auth from Firebase
 def runLoginPage():
-    auth, db = st.session_state['auth'], st.session_state['db']
+    auth = st.session_state['auth']
 
     # Setting user status to None by default
     if 'user' not in st.session_state:
