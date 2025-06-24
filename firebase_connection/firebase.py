@@ -10,7 +10,7 @@ import options.authentication as at
 def connectFirebase():
     firebaseConfig = json.loads(st.secrets["text-api-key"])
     credentials = json.loads(st.secrets["text-credentials"])
-    firebaseConfig["serviceAccount"] = credentials
+    # firebaseConfig["serviceAccount"] = credentials
 
     firebase = pyrebase.initialize_app(firebaseConfig)
     

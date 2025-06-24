@@ -61,16 +61,16 @@ def run_submeter():
                 "nome": nome
             }
 
-            total_photos = db.child("Users").child(user["localId"]).child("totalfotos").get().val()
+            total_photos = db.child("Users").child(user["localId"]).child("totalfotos").get(token=user['idToken']).val()
             num_foto = total_photos+1
 
-            db.child("Users").child(user["localId"]).child("totalfotos").set(num_foto)
-            db.child("Users").child(user["localId"]).child("status").update({num_foto: False})
-            db.child("Users").child(user["localId"]).child("fotos").child(num_foto).set(foto_dic)
+            db.child("Users").child(user["localId"]).child("totalfotos").set(num_foto, token=user['idToken'])
+            db.child("Users").child(user["localId"]).child("status").update({num_foto: False}, token=user['idToken'])
+            db.child("Users").child(user["localId"]).child("fotos").child(num_foto).set(foto_dic, token=user['idToken'])
 
             upload_foto = Image.open(foto)
             upload_foto.save(f"{num_foto}phdaccache.jpg")
-            storage.child(f"images/{num_foto}.jpg").put(f"{num_foto}phdaccache.jpg")
+            storage.child(f"images/{num_foto}.jpg").put(f"{num_foto}phdaccache.jpg", token=user['idToken'])
 
             st.success("Foto enviada!")
 

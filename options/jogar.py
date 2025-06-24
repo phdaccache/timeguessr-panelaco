@@ -10,8 +10,8 @@ from firebase_connection.firebase import get_storage
 def get_image():
     db = st.session_state['db']
     user = st.session_state['user']
-    status = db.child("Users").child(user["localId"]).child("status").get().val()
-    fotodia = db.child("Users").child(user["localId"]).child("fotodia").get().val()
+    status = db.child("Users").child(user["localId"]).child("status").get(token=user['idToken']).val()
+    fotodia = db.child("Users").child(user["localId"]).child("fotodia").get(token=user['idToken']).val()
 
     current_day = list(fotodia)[0]
     today = datetime.now(ZoneInfo("America/Sao_Paulo")).strftime('%Y-%m-%d')
@@ -31,9 +31,9 @@ def get_image():
     
     random_num = random.randint(0, len(possible_images)-1)
     image_num = possible_images[random_num]
-    fotodia = db.child("Users").child(user["localId"]).child("fotodia").remove()
-    fotodia = db.child("Users").child(user["localId"]).child("fotodia").update({today:image_num})
-    db.child("Users").child(user["localId"]).child("status").child(image_num).set(True)
+    fotodia = db.child("Users").child(user["localId"]).child("fotodia").remove(token=user['idToken'])
+    fotodia = db.child("Users").child(user["localId"]).child("fotodia").update({today:image_num}, token=user['idToken'])
+    db.child("Users").child(user["localId"]).child("status").child(image_num).set(True, token=user['idToken'])
     image = get_storage(f"images/{image_num}.jpg")
     return image, image_num
 
@@ -87,11 +87,11 @@ def run_jogar():
             db = st.session_state['db']
             user = st.session_state['user']
 
-            nome = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("nome").get().val()
-            desc = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("desc").get().val()
-            lat = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("lat").get().val()
-            long = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("long").get().val()
-            ano = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("ano").get().val()
+            nome = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("nome").get(token=user['idToken']).val()
+            desc = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("desc").get(token=user['idToken']).val()
+            lat = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("lat").get(token=user['idToken']).val()
+            long = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("long").get(token=user['idToken']).val()
+            ano = db.child("Users").child(user["localId"]).child("fotos").child(num_image).child("ano").get(token=user['idToken']).val()
 
             coords_1 = (lat, long)
             coords_2 = (selected_latitude, selected_longitude)
