@@ -5,7 +5,6 @@ import geopy.distance
 import math
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
-import requests
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -34,8 +33,7 @@ weird_dic = {
 }
 
 def share_result_image(score, years, dist, image, bg_color=(234, 232, 221)):
-    response = requests.get(image)
-    image = Image.open(BytesIO(response.content))
+    image = Image.open(image)
     img_size = (210, 210)
     image = image.resize(img_size)
 
